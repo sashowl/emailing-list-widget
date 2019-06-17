@@ -1,1 +1,152 @@
-!function(){function e(e,t){var s=document.createElement("script");s.setAttribute("type","text/javascript"),s.onload=function(){t()},s.setAttribute("src",e),document.getElementsByTagName("head")[0].appendChild(s)}document.addEventListener("DOMContentLoaded",function(){!function(){var t=document.getElementsByTagName("head")[0],s=document.createElement("link"),i=document.createElement("link"),a=document.createElement("link");s.setAttribute("rel","stylesheet"),s.setAttribute("href","styles/widget.css"),a.setAttribute("rel","stylesheet"),a.setAttribute("href","https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap"),i.setAttribute("rel","stylesheet"),i.setAttribute("href","https://use.fontawesome.com/releases/v5.5.0/css/all.css"),i.setAttribute("integrity","sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"),i.setAttribute("crossorigin","anonymous"),t.appendChild(i),t.appendChild(s),t.appendChild(a);document.getElementsByTagName("body")[0].innerHTML="<div class='widgetContainer'><div class='widget'><i class='far fa-envelope'></i></div><div class='desc'>Click here to subscribe to our mailaing list!</div></div><div class='formContainer invisible'><h3>Subscribe to our emails today!</h3><div class='close emailingListTogglers'><i class='fas fa-times'></i></div><form id='addEmailForm'><input class='email' type='email' name='email' required placeholder='Enter Email Address'><input class='name' type='text' name='name' required placeholder='Name'><input class='number' type='text' name='number' required placeholder='Number'><button>Submit</button></form></div>",e("https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js",function(){e("https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js",function(){firebase.initializeApp({apiKey:"AIzaSyAfRvd8pOhr5b-rYbb0FSJ6QcXfolrkm8E",authDomain:"emailing-list-35bf9.firebaseapp.com",databaseURL:"https://emailing-list-35bf9.firebaseio.com",projectId:"emailing-list-35bf9",storageBucket:"emailing-list-35bf9.appspot.com",messagingSenderId:"280486190958",appId:"1:280486190958:web:a6064147a6171a7d"});var e=firebase.firestore(),t=document.querySelector("body > .formContainer > #addEmailForm"),s=document.querySelector("body > .widgetContainer > .widget"),i=document.querySelector("body > .widgetContainer > .desc"),a=document.querySelector("body > .formContainer > .close"),n=document.querySelector("body > .formContainer"),l=document.querySelector("body > .formContainer > form > button");s.addEventListener("mouseenter",function(){i.style.transform="translateX(0px)",i.style.opacity="1"}),s.addEventListener("mouseleave",function(){i.style.transform="translateX(-15px)",i.style.opacity="0"}),a.addEventListener("click",function(){n.classList.toggle("visible")}),s.addEventListener("click",function(){n.classList.remove("success"),l.classList.remove("success"),n.classList.remove("failure"),l.classList.remove("failure"),l.innerHTML="Submit",l.disabled=!1,n.classList.toggle("visible")}),t.addEventListener("submit",function(s){s.preventDefault(),e.collection("emailing list").add({name:t.name.value,number:t.number.value,email:t.email.value}).then(function(){n.classList.toggle("success"),l.classList.toggle("success"),l.innerHTML="Successfully added",l.disabled=!0,t.name.value="",t.number.value="",t.email.value="",window.setTimeout(function(){n.classList.toggle("visible")},2e3)}).catch(function(e){console.log(e),n.classList.toggle("failure"),l.classList.toggle("failure"),l.innerHTML="There was an error. Try again later",t.name.value="",t.number.value="",t.email.value="",l.disabled=!0,window.setTimeout(function(){n.classList.toggle("visible")},2e3)})})})})}()})}();
+(function() {
+
+  document.addEventListener("DOMContentLoaded",function() {
+    main() ;
+  }) ;
+
+function load(src, callback) {
+  var script = document.createElement("script") ;
+  script.setAttribute("type","text/javascript")
+  script.onload = function() {
+    callback();
+  } ;
+  script.setAttribute("src",src);
+  document.getElementsByTagName("head")[0].appendChild(script);
+}
+
+
+
+
+function main() {
+
+  var head = document.getElementsByTagName("head")[0] ;
+
+  var widget = document.createElement("link") ;
+  var fa = document.createElement("link") ;
+  var font = document.createElement("link") ;
+
+  widget.setAttribute("rel","stylesheet") ;
+  widget.setAttribute("href","styles/widget.css") ;
+
+  font.setAttribute("rel","stylesheet") ;
+  font.setAttribute("href","https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap") ;
+
+  fa.setAttribute("rel","stylesheet") ;
+  fa.setAttribute("href","https://use.fontawesome.com/releases/v5.5.0/css/all.css") ;
+  fa.setAttribute("integrity","sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU") ;
+  fa.setAttribute("crossorigin","anonymous") ;
+
+  head.appendChild(fa) ;
+  head.appendChild(widget) ;
+  head.appendChild(font) ;
+
+  var widgetMarkup =
+                "<div class='widgetContainer'>" +
+                  "<div class='widget'><i class='far fa-envelope'></i></div>" +
+                  "<div class='desc'>Click here to subscribe to our mailaing list!</div>"+
+                "</div>" +
+                "<div class='formContainer invisible'>" +
+                  "<h3>Subscribe to our emails today!</h3>" +
+                  "<div class='close emailingListTogglers'><i class='fas fa-times'></i></div>" +
+                  "<form id='addEmailForm'>" +
+                    "<input class='email' type='email' name='email' required placeholder='Enter Email Address'>" +
+                    "<input class='name' type='text' name='name' required placeholder='Name'>" +
+                    "<input class='number' type='text' name='number' required placeholder='Number'>" +
+                    "<button>Submit</button>" +
+                  "</form>" +
+                "</div>" ;
+
+  document.getElementsByTagName("body")[0].innerHTML = widgetMarkup ;
+
+  load("https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js", function() {
+    load("https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js", function() {
+        var firebaseConfig = {
+          apiKey: "API_KEY",
+          authDomain: "AUTH_DOMAIN",
+          databaseURL: "DATABASE_URL",
+          projectId: "PROJECT_ID",
+          storageBucket: "STORAGEBUCKET",
+          messagingSenderId: "MESSAGINGSENDERID",
+          appId: "APPID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore() ;
+
+
+        var form = document.querySelector("body > .formContainer > #addEmailForm") ;
+
+        var widget = document.querySelector("body > .widgetContainer > .widget") ;
+        var desc = document.querySelector("body > .widgetContainer > .desc") ;
+        var closeButton = document.querySelector("body > .formContainer > .close") ;
+        var formContainer = document.querySelector("body > .formContainer") ;
+        var submitButton = document.querySelector("body > .formContainer > form > button") ;
+
+
+
+
+        widget.addEventListener("mouseenter",function() {
+          desc.style.transform = "translateX(0px)" ;
+          desc.style.opacity = "1" ;
+        }) ;
+
+        widget.addEventListener("mouseleave",function() {
+          desc.style.transform = "translateX(-15px)" ;
+          desc.style.opacity = "0" ;
+        }) ;
+
+        closeButton.addEventListener("click",function() {
+          formContainer.classList.toggle("visible") ;
+        }) ;
+
+        widget.addEventListener("click",function() {
+          formContainer.classList.remove("success") ;
+          submitButton.classList.remove("success") ;
+          formContainer.classList.remove("failure") ;
+          submitButton.classList.remove("failure") ;
+          submitButton.innerHTML = "Submit" ;
+          submitButton.disabled = false ;
+
+
+          formContainer.classList.toggle("visible") ;
+        });
+
+        form.addEventListener("submit",function(event) {
+          event.preventDefault() ;
+          db.collection("emailing list").add({
+            name:form.name.value,
+            number:form.number.value,
+            email:form.email.value,
+          })
+          .then(function() {
+            formContainer.classList.toggle("success") ;
+            submitButton.classList.toggle("success") ;
+            submitButton.innerHTML = "Successfully added" ;
+            submitButton.disabled = true ;
+            form.name.value = '' ;
+            form.number.value = '' ;
+            form.email.value = '' ;
+            window.setTimeout(function() {
+              formContainer.classList.toggle("visible") ;
+            },2000) ;
+          })
+          .catch(function(error) {
+            console.log(error) ;
+            formContainer.classList.toggle("failure") ;
+            submitButton.classList.toggle("failure") ;
+            submitButton.innerHTML = "There was an error. Try again later" ;
+            form.name.value = '' ;
+            form.number.value = '' ;
+            form.email.value = '' ;
+            submitButton.disabled = true ;
+            window.setTimeout(function() {
+              formContainer.classList.toggle("visible") ;
+            },2000) ;
+          })
+        }) ;
+    })
+  }) ;
+}
+
+})();
